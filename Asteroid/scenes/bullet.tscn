@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/player/ball/blast-harrier-laser-1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/bullet.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 3.23233
+height = 7.82253
+
+[node name="bullet" type="KinematicBody2D"]
+collision_mask = 2048
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="laser" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 1 )

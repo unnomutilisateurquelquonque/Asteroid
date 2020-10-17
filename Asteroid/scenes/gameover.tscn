@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/background/GameOver.jpg" type="Texture" id=1]
+
+[node name="gameover" type="Node2D"]
+
+[node name="GameOver" type="Sprite" parent="."]
+position = Vector2( 517.842, 302.996 )
+scale = Vector2( 3.92779, 3.23549 )
+z_index = 7
+texture = ExtResource( 1 )

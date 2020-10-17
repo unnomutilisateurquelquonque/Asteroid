@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/player/spaceship/Spaceship-2.png.png" type="Texture" id=1]
+[ext_resource path="res://assets/player/spaceship/Spaceship-1.png.png" type="Texture" id=2]
+[ext_resource path="res://scenes/bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/player.gd" type="Script" id=4]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=5]
+[ext_resource path="res://scenes/gros.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/bullet.gd" type="Script" id=7]
+[ext_resource path="res://assets/player/ball/blast-harrier-laser-1.png" type="Texture" id=8]
+[ext_resource path="res://assets/background/space.jpg" type="Texture" id=9]
+[ext_resource path="res://scenes/moyen.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/petit.tscn" type="PackedScene" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16.4863, 16.0867 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 3.23233
+height = 7.82253
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 5 )
+gros = ExtResource( 6 )
+moyen = ExtResource( 10 )
+petit = ExtResource( 11 )
+
+[node name="vie" type="Label" parent="."]
+margin_left = 917.518
+margin_top = 1.5874
+margin_right = 1024.52
+margin_bottom = 25.5874
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player" type="KinematicBody2D" parent="."]
+visible = false
+position = Vector2( 512, 500 )
+collision_mask = 2147483650
+script = ExtResource( 4 )
+bullet = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
+rotation = 1.5708
+scale = Vector2( 0.0842545, 0.109702 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( 1.12373, -1.4983 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="canon" type="Position2D" parent="player"]
+position = Vector2( 40, 12 )
+
+[node name="canon2" type="Position2D" parent="player"]
+position = Vector2( 40, -12 )
+
+[node name="bullet" type="KinematicBody2D" parent="."]
+visible = false
+collision_mask = 2048
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+gros = ExtResource( 6 )
+moyen = ExtResource( 10 )
+petit = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet"]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="laser" type="Sprite" parent="bullet"]
+rotation = 1.5708
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 8 )
+
+[node name="space" type="Sprite" parent="."]
+show_behind_parent = true
+position = Vector2( 518.371, 301.346 )
+scale = Vector2( 2.06712, 2.49084 )
+texture = ExtResource( 9 )
+
+[node name="score" type="Label" parent="."]
+margin_right = 95.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
